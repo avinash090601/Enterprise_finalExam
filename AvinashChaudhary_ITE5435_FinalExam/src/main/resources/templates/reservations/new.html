@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New Reservation</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="nav">
+  <div class="brand">Husky Air</div>
+  <nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/reservations}">Reservations</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>New Reservation</h2>
+  <p class="flash" th:if="${msg}" th:text="${msg}"></p>
+
+  <form th:action="@{/reservations}" th:object="${form}" method="post" class="card">
+    <h3>Customer</h3>
+    <div class="grid">
+      <label>Name
+        <input type="text" th:field="*{customerName}" placeholder="Full name">
+        <span class="err" th:errors="*{customerName}"></span>
+      </label>
+      <label>Email
+        <input type="email" th:field="*{customerEmail}" placeholder="you@example.com">
+        <span class="err" th:errors="*{customerEmail}"></span>
+      </label>
+      <label>Phone
+        <input type="text" th:field="*{customerPhone}" placeholder="437-299-4839">
+        <span class="err" th:errors="*{customerPhone}"></span>
+      </label>
+    </div>
+
+    <h3>Flight</h3>
+    <div class="grid">
+      <label>Flight No.
+        <input type="text" th:field="*{flightNumber}" placeholder="HA101">
+        <span class="err" th:errors="*{flightNumber}"></span>
+      </label>
+      <label>From
+        <input type="text" th:field="*{fromAirport}" placeholder="YYZ">
+        <span class="err" th:errors="*{fromAirport}"></span>
+      </label>
+      <label>To
+        <input type="text" th:field="*{toAirport}" placeholder="YVR">
+        <span class="err" th:errors="*{toAirport}"></span>
+      </label>
+      <label>Departure Date
+        <input type="date" th:field="*{departureDate}">
+        <span class="err" th:errors="*{departureDate}"></span>
+      </label>
+
+      <!-- FIXED: each option now has a value -->
+      <label>Seat Class
+        <select th:field="*{seatClass}">
+          <option value="ECONOMY">ECONOMY</option>
+          <option value="PREMIUM_ECONOMY">PREMIUM_ECONOMY</option>
+          <option value="BUSINESS">BUSINESS</option>
+          <option value="FIRST">FIRST</option>
+        </select>
+      </label>
+
+      <label>Ticket Price
+        <input type="number" step="0.01" th:field="*{price}" placeholder="399.00">
+        <span class="err" th:errors="*{price}"></span>
+      </label>
+    </div>
+
+    <h3>Payment</h3>
+    <div class="grid">
+      <label>Amount Paid
+        <input type="number" step="0.01" th:field="*{amountPaid}" placeholder="399.00">
+      </label>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn primary">Create</button>
+      <a th:href="@{/}" class="btn">Cancel</a>
+    </div>
+  </form>
+</main>
+</body>
+</html>

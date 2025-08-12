@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Husky Air – Reservation</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="nav">
+  <div class="brand">Husky Air</div>
+  <nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/reservations}">Reservations</a>
+    <a th:href="@{/reservations/new}" class="btn">New Reservation</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Husky Air Reservations</h1>
+    <p>Create and manage flight reservations. This client uses Thymeleaf and calls our own REST API (JSON via Jackson).</p>
+    <div class="actions">
+      <a th:href="@{/reservations/new}" class="btn primary">Book Now</a>
+      <a th:href="@{/reservations}" class="btn">View All</a>
+    </div>
+  </section>
+</main>
+</body>
+</html>

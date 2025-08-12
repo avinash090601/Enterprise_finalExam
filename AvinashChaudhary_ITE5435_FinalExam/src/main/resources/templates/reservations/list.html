@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservations</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="nav">
+  <div class="brand">Husky Air</div>
+  <nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/reservations/new}" class="btn">New Reservation</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>All Reservations</h2>
+  <div class="table card">
+    <div class="thead">
+      <div>ID</div><div>Customer</div><div>Flight</div><div>Date</div><div>Status</div><div>Paid</div>
+    </div>
+    <div class="tbody" th:if="${#lists.isEmpty(reservations)}">
+      <div class="empty">No reservations yet.</div>
+    </div>
+    <div class="tbody" th:each="r : ${reservations}">
+      <div th:text="${r.id}"></div>
+      <div>
+        <div th:text="${r.customerName}"></div>
+        <small th:text="${r.customerEmail}"></small>
+      </div>
+      <div>
+        <div th:text="${r.flightNumber}"></div>
+        <small th:text="${r.fromAirport} + ' → ' + ${r.toAirport}"></small>
+      </div>
+      <div th:text="${r.departureDate}"></div>
+      <div th:text="${r.status}"></div>
+      <div th:text="${r.amountPaid}"></div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
